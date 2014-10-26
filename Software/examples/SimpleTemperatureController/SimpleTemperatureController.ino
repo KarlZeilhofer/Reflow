@@ -128,11 +128,15 @@ option1_fast:
     }else if (digitalRead(LEFT) != 1){
       if(T_Set > 0){
         T_Set-=2;
+      }else{
+        T_Set = 0;
       }
       goto option1_fast;
     }else if (digitalRead(RIGHT) != 1){
       if(T_Set < 500){
         T_Set+=2;
+      }else{
+        T_Set = 500;
       }
       goto option1_fast;
     }

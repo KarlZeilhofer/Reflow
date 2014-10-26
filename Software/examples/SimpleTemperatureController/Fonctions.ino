@@ -217,8 +217,8 @@ void RAMtoEEPROM(){
   // T_Set is 0...500
   if(T_Set_EE != (int)T_Set){
     if(T_Set > 255){
-      EEPROM.write(TEMPERATURE_SET_LSB_ADDR,255);
-      EEPROM.write(TEMPERATURE_SET_MSB_ADDR,(int)T_Set>>8);
+      EEPROM.write(TEMPERATURE_SET_LSB_ADDR,(unsigned int)T_Set&0xFF);
+      EEPROM.write(TEMPERATURE_SET_MSB_ADDR,(unsigned int)T_Set>>8);
     }
     else{
       EEPROM.write(TEMPERATURE_SET_LSB_ADDR,T_Set);
