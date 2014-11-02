@@ -67,15 +67,20 @@ void menuP(int option){ // Select the first option in the MENU
   GLCD.print(">");
 }
 
+// save settings on turning off
 void toggleEnabled(){
-  if(Enabled){
+  if(Enabled){ // turn off:
     Enabled = false;
     Relay_off();
     RAMtoEEPROM();
-  }else{
+  }else{ // turn on:
     Enabled = true;
-    T_Ramp = T_Sensor; // save start temperature for limiting the ramp
-    Beeped = false;
+    if(T_Sensor < T_Set){
+      T_Ramp = T_Sensor; // save start temperature for limiting the ramp
+      Beeped = false;
+    }else{ // if still cooling
+      T_Ramp = T_Set;
+    }
   }
 }
 
